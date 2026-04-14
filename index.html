@@ -1,0 +1,452 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jubilee Health Insurance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --primary:#BA0C2F;
+      --primary-dark:#7E0820;
+      --green:#006B5B;
+      --yellow:#F8C400;
+      --ink:#090A0C;
+      --text:#4B5563;
+      --muted:#8A92A3;
+      --line:#ECEEF2;
+      --soft:#F7F2F0;
+      --white:#fff;
+      --wa:#25D366;
+      --nav-h:72px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+    body{font-family:'Open Sans',sans-serif;color:var(--ink);background:var(--white)}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    h1,h2,h3,h4{font-family:'Inter',sans-serif}
+    .section{min-height:100svh;scroll-snap-align:start;display:flex;align-items:center;padding:calc(var(--nav-h) + 22px) 0 46px}
+    .inner{width:min(1360px,100%);margin:0 auto;padding:0 48px}
+    .nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.06)}
+    .nav-inner{height:100%;width:min(1360px,100%);margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .nav-logo{display:flex;align-items:center;text-decoration:none}
+    .nav-logo img{height:42px;width:auto;object-fit:contain}
+    .nav-links{display:flex;align-items:center;gap:26px;list-style:none;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+    .nav-links a{text-decoration:none;color:#2B2F36}
+    .nav-links a:hover{color:var(--primary)}
+    .nav-right{display:flex;align-items:center;gap:16px;flex-shrink:0}
+    .nav-cta,.btn-primary,.btn-secondary,.btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;border-radius:999px;font-weight:800;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+    .nav-cta{padding:12px 18px;background:var(--primary);color:#fff;font-size:12px}
+    .nav-nxtpe-corner{display:flex;align-items:center;text-decoration:none}
+    .nav-nxtpe-corner img{height:30px;width:auto;opacity:.82;transition:opacity .2s ease}
+    .nav-nxtpe-corner:hover img{opacity:1}
+    .btn-primary{padding:16px 24px;background:var(--primary);color:#fff;font-size:14px;box-shadow:0 12px 28px rgba(186,12,47,.22)}
+    .btn-secondary{padding:15px 23px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font-size:14px}
+    .btn-wa{padding:16px 24px;background:var(--wa);color:#fff;font-size:14px;box-shadow:0 12px 28px rgba(37,211,102,.22)}
+    .nav-cta:hover,.btn-primary:hover,.btn-secondary:hover,.btn-wa:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,.14)}
+    .eyebrow{display:inline-flex;padding:9px 13px;border:1px solid rgba(186,12,47,.35);border-radius:999px;background:#fff;color:var(--primary-dark);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.14em}
+    .hero{background:linear-gradient(110deg,#fff 0%,#fff 46%,#F8E9E5 46%,#F0C9C9 100%);overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+    h1{font-size:clamp(40px,4.6vw,78px);font-weight:800;line-height:1.04;letter-spacing:-.05em;margin-top:18px;max-width:680px}
+    .hero-copy{font-size:clamp(15px,1.05vw,18px);line-height:1.62;color:#374151;margin:20px 0 26px;max-width:560px}
+    .hero-actions,.support-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-actions-mobile{display:none}
+    .hero-proof{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+    .proof-pill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.78);font-size:11px;font-weight:800;color:#3D4451}
+    .hero-portrait{position:relative;height:clamp(440px,68svh,640px);border-radius:28px;overflow:hidden;box-shadow:0 26px 62px rgba(126,8,32,.20);background:#EBCAC2}
+    .hero-portrait img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center 28%}
+    .products{background:#fff}
+    .section-head{display:block;margin-bottom:20px}
+    .section-head h2{font-size:clamp(30px,3vw,52px);font-weight:800;line-height:1.06;letter-spacing:-.045em;max-width:620px}
+    .product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .product-card{min-height:0;border:1px solid var(--line);border-radius:28px;background:#fff;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;box-shadow:0 12px 34px rgba(0,0,0,.06);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+    .product-card:hover{transform:translateY(-8px);box-shadow:0 28px 70px rgba(0,0,0,.14);border-color:rgba(186,12,47,.35)}
+    .product-img{height:clamp(190px,26svh,300px);background:var(--soft);overflow:hidden}
+    .product-img img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+    .product-card:nth-child(2) .product-img img{object-position:center 36%}
+    .product-card:nth-child(3) .product-img img{object-position:center 22%}
+    .product-body{padding:20px 22px 74px;display:flex;flex:1;flex-direction:column;position:relative}
+    .product-kicker{font-size:10.5px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.11em}
+    .product-card h3{font-size:clamp(21px,1.55vw,25px);font-weight:700;line-height:1.18;letter-spacing:-.025em;margin:10px 0 10px}
+    .product-card p{font-size:13px;line-height:1.6;color:var(--text);margin-bottom:12px}
+    .product-link{position:absolute;right:22px;bottom:22px;width:42px;height:42px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;transition:transform .18s ease,background .18s ease}
+    .product-link svg{width:18px;height:18px;stroke:currentColor;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .product-card:hover .product-link{transform:translate(3px,-3px);background:var(--primary-dark)}
+    .support{background:linear-gradient(120deg,#071B17 0%,#063B33 58%,#BA0C2F 100%);color:#fff;position:relative;overflow:hidden}
+    .support::before{content:'';position:absolute;width:62vw;aspect-ratio:1;border-radius:50%;right:-25vw;top:-35vw;background:radial-gradient(circle,rgba(248,196,0,.35),rgba(248,196,0,0) 62%)}
+    .support-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+    .support h2{font-size:clamp(38px,4.4vw,76px);font-weight:800;line-height:1.03;letter-spacing:-.05em;margin:18px 0}
+    .support p{font-size:15px;line-height:1.65;color:rgba(255,255,255,.75);max-width:590px}
+    .support-panel{border:1px solid rgba(255,255,255,.14);border-radius:30px;background:rgba(255,255,255,.09);padding:22px;box-shadow:0 32px 90px rgba(0,0,0,.24)}
+    .chat-bubble{background:#fff;color:var(--ink);border-radius:22px 22px 22px 6px;padding:18px;margin-bottom:14px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+    .chat-bubble strong{display:block;font-size:18px;margin-bottom:8px}
+    .chat-bubble span{display:block;color:var(--text);line-height:1.65;font-size:14px}
+    .support-chips{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}
+    .support-chips span{padding:10px 13px;border-radius:999px;background:rgba(255,255,255,.12);font-size:12px;font-weight:800;color:#fff}
+    .support-hours{margin-top:14px;font-size:13px;color:rgba(255,255,255,.7)}
+    footer{background:#0d0d0d;padding:48px 0 64px;color:#fff;margin-bottom:0;position:relative;z-index:1;scroll-snap-align:start}
+    .ft-inner{max-width:1360px;margin:0 auto;padding:0 48px}
+    .ft-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:44px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:0}
+    .ft-brand p{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;margin-top:12px;max-width:300px}
+    .ft-logo img{height:34px;width:auto;filter:brightness(0) invert(1)}
+    .ft-col h4{font-size:11px;font-weight:700;color:var(--yellow);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+    .ft-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+    .ft-col a{font-size:13px;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+    .ft-col a:hover{color:var(--yellow)}
+    .ft-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding:14px 0 0;border-top:1px solid rgba(255,255,255,.06)}
+    .ft-copy{font-size:12px;color:rgba(255,255,255,.28)}
+    .ft-reg{font-size:12px;color:rgba(255,255,255,.2)}
+    .ft-logo-row{display:flex;align-items:center;gap:16px}
+    .ft-divider{width:1px;height:24px;background:rgba(255,255,255,.15)}
+    .ft-nxtpe-wrap{display:flex;align-items:center;text-decoration:none}
+    .ft-nxtpe-wrap img{height:26px;width:auto;opacity:.6;transition:opacity .2s;filter:brightness(0) invert(1)}
+    .ft-nxtpe-wrap:hover img{opacity:.9}
+    .wa-launcher{position:fixed;right:34px;bottom:34px;z-index:80;width:62px;height:62px;border:none;border-radius:50%;background:var(--wa);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 18px 40px rgba(37,211,102,.35);transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+    .wa-launcher:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 22px 52px rgba(37,211,102,.42);background:#20BE5B}
+    .wa-launcher svg{width:34px;height:34px;fill:currentColor}
+    .wa-widget{position:fixed;right:34px;bottom:112px;z-index:81;width:min(380px,calc(100vw - 36px));background:#fff;border-radius:28px;box-shadow:0 28px 80px rgba(9,10,12,.24);border:1px solid rgba(0,0,0,.06);overflow:hidden;opacity:0;pointer-events:none;transform:translateY(18px) scale(.98);transform-origin:bottom right;transition:opacity .22s ease,transform .22s ease}
+    .wa-widget.open{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+    .wa-widget-head{background:linear-gradient(135deg,#006B5B,#128C7E);color:#fff;padding:18px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .wa-widget-title{display:flex;align-items:center;gap:11px;font-family:'Inter',sans-serif;font-weight:800;font-size:15px;letter-spacing:-.02em}
+    .wa-widget-title span{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .wa-widget-title svg{width:21px;height:21px;fill:#fff}
+    .wa-close{width:34px;height:34px;border:none;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .wa-close:hover{background:rgba(255,255,255,.24)}
+    .wa-close svg{width:18px;height:18px;fill:currentColor}
+    .wa-widget-body{padding:18px;background:#F5F1EA}
+    .wa-message{max-width:92%;background:#fff;border-radius:4px 20px 20px 20px;padding:13px 15px;margin-bottom:14px;box-shadow:0 6px 18px rgba(0,0,0,.07);font-size:13px;line-height:1.6;color:#26313F}
+    .wa-quick-replies{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+    .wa-quick-reply{border:1px solid rgba(18,140,126,.20);background:#fff;color:#006B5B;border-radius:999px;padding:9px 11px;font:800 11px/1 'Inter',sans-serif;letter-spacing:-.01em;cursor:pointer;box-shadow:0 5px 14px rgba(0,0,0,.05);transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease}
+    .wa-quick-reply:hover{background:#E7F7EE;color:#075E54;border-color:rgba(18,140,126,.38);transform:translateY(-1px)}
+    .wa-widget-form{display:flex;align-items:flex-end;gap:9px;background:#fff;border-radius:26px;padding:9px 8px 9px 16px;border:1px solid #E7E9EE}
+    .wa-widget-form textarea{flex:1;min-width:0;border:none;outline:none;background:transparent;font:600 13px/1.45 'Open Sans',sans-serif;color:#1F2937;padding:8px 0;min-height:38px;max-height:88px;resize:none;overflow-y:auto;scrollbar-width:thin}
+    .wa-send{width:42px;height:42px;border:none;border-radius:50%;background:var(--primary);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .18s ease,background .18s ease}
+    .wa-send:hover{transform:scale(1.05);background:var(--primary-dark)}
+    .wa-send svg{width:20px;height:20px;fill:currentColor;transform:translateX(1px)}
+    @media (max-width:900px){
+      :root{--nav-h:66px}
+      body{padding-bottom:0}
+      .section{min-height:auto;padding:96px 0 56px}
+      .inner,.nav-inner{padding:0 18px}
+      .nav-links{display:none}
+      .nav-right{gap:10px}
+      .nav-cta{padding:10px 14px}
+      .nav-nxtpe-corner img{height:24px}
+      .hero{background:#fff}
+      .hero-grid,.support-grid{grid-template-columns:1fr;gap:28px}
+      .hero-portrait{min-height:380px;border-radius:28px;order:-1}
+      .section-head{display:block}
+      .product-grid{grid-template-columns:1fr}
+      .product-card{min-height:auto}
+      .product-img{height:260px}
+      .support-panel{padding:18px;border-radius:28px}
+      .ft-inner{padding:0 18px}
+      .ft-top{grid-template-columns:1fr;gap:28px}
+      footer{padding:38px 0 56px}
+      .wa-launcher{right:18px;bottom:18px;width:58px;height:58px}
+      .wa-widget{right:18px;bottom:90px;width:calc(100vw - 36px);border-radius:24px}
+    }
+    @media (max-width:770px){
+      .hero-grid{display:flex;flex-direction:column;gap:18px}
+      .hero-portrait{order:2;height:220px;min-height:220px;border-radius:24px}
+      .hero-portrait img{object-position:center 34%}
+      .hero-actions{display:none}
+      .hero-actions-mobile{display:grid;order:3;grid-template-columns:1fr 1fr;gap:10px}
+      .hero-actions-mobile a{width:100%;padding:13px 14px;font-size:12.5px;white-space:nowrap}
+      .hero-proof{display:none}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#top" aria-label="Jubilee Health Insurance home">
+        <img src="https://jubileeinsurance.com/ug/wp-content/themes/jubilee/assets/images/jubilee-logo.png" alt="Jubilee Insurance" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#products">Plans</a></li>
+        <li><a href="#support">Support</a></li>
+        <li><a href="Jubilee-J-care.html">J-Care</a></li>
+        <li><a href="Jubilee-J-care-Junior.html">J-Junior</a></li>
+        <li><a href="Jubilee-J-senior.html">J-Senior</a></li>
+      </ul>
+      <div class="nav-right">
+        <a class="nav-cta" href="#products">Find Your Cover</a>
+        <a href="https://www.nxt.pe" target="_blank" rel="noopener" class="nav-nxtpe-corner">
+          <img src="https://www.nxt.pe/assets/nxtpeLogo.png" alt="NxtPe" />
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="section hero">
+      <div class="inner">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">Jubilee Health Insurance</span>
+            <h1>Health cover for every life stage.</h1>
+            <p class="hero-copy">Compare Jubilee health options for families, children, and older adults. Choose a path and continue to its product page.</p>
+            <div class="hero-actions">
+              <a class="btn-primary" href="#products">View Health Options</a>
+              <a class="btn-secondary" href="#support">Talk to Support</a>
+            </div>
+            <div class="hero-proof" aria-label="Highlights">
+              <span class="proof-pill">Online product journey</span>
+              <span class="proof-pill">Family-focused options</span>
+              <span class="proof-pill">WhatsApp guidance</span>
+            </div>
+          </div>
+          <div class="hero-portrait" aria-label="Smiling family exploring Jubilee health insurance">
+            <img src="eligible.png" alt="Jubilee Health Insurance family smiling together" loading="eager" />
+          </div>
+          <div class="hero-actions hero-actions-mobile" aria-label="Mobile hero actions">
+            <a class="btn-primary" href="#products">View Health Options</a>
+            <a class="btn-secondary" href="#support">Talk to Support</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section products" id="products">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Choose Your Product</span>
+            <h2>Three ways to protect health.</h2>
+          </div>
+        </div>
+
+        <div class="product-grid">
+          <a class="product-card" href="Jubilee-J-care.html">
+            <div class="product-img">
+              <img src="card_1.png" alt="Smiling African family for J-Care health insurance" loading="lazy" />
+            </div>
+            <div class="product-body">
+              <span class="product-kicker">For individuals & families</span>
+              <h3>J-Care Health Insurance</h3>
+              <p>Comprehensive cover with flexible benefits for everyday and major healthcare needs.</p>
+              <span class="product-link" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
+            </div>
+          </a>
+
+          <a class="product-card" href="Jubilee-J-care-Junior.html">
+            <div class="product-img">
+              <img src="https://images.pexels.com/photos/5561185/pexels-photo-5561185.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Black child wearing a doctor costume for J-Junior health insurance" loading="lazy" />
+            </div>
+            <div class="product-body">
+              <span class="product-kicker">For children</span>
+              <h3>J-Junior Health Insurance</h3>
+              <p>Child-focused cover with quote guidance, optional benefits, and flexible payment support.</p>
+              <span class="product-link" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
+            </div>
+          </a>
+
+          <a class="product-card" href="Jubilee-J-senior.html">
+            <div class="product-img">
+              <img src="card_3.png" alt="Smiling senior African woman for J-Senior health insurance guidance" loading="lazy" />
+            </div>
+            <div class="product-body">
+              <span class="product-kicker">For older adults</span>
+              <h3>J-Senior Health Insurance</h3>
+              <p>Guided support to understand eligibility, medical requirements, and next steps.</p>
+              <span class="product-link" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section support" id="support">
+      <div class="inner">
+        <div class="support-grid">
+          <div>
+            <span class="eyebrow">We Are Here To Help</span>
+            <h2>Choose with a Jubilee agent beside you.</h2>
+            <p>Ask about coverage, eligibility, documents, pricing, payment options, or which health insurance product fits your household best.</p>
+            <div class="support-chips" aria-label="Support topics">
+              <span>J-Care options</span>
+              <span>J-Junior questions</span>
+              <span>J-Senior guidance</span>
+              <span>Documents needed</span>
+              <span>Pricing help</span>
+            </div>
+            <div class="support-actions">
+              <a class="btn-wa" href="https://wa.me/256772751825?text=Hello%20Jubilee%2C%20I%20need%20help%20choosing%20health%20insurance" target="_blank" rel="noopener">Chat on WhatsApp</a>
+              <a class="btn-secondary" href="#products">Review Options</a>
+            </div>
+            <div class="support-hours">Available Mon - Sat, 8 AM - 6 PM EAT</div>
+          </div>
+          <div class="support-panel" aria-label="Support chat preview">
+            <div class="chat-bubble">
+              <strong>Hello and welcome.</strong>
+              <span>Need help choosing Jubilee health insurance? Tell us who you want to cover and we will point you to J-Care, J-Junior, or J-Senior guidance.</span>
+            </div>
+            <div class="chat-bubble">
+              <strong>Choose a faster starting point.</strong>
+              <span>Coverage explained, product recommendation, quote guidance, documents needed, eligibility check, or WhatsApp support.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+  <footer>
+    <div class="ft-inner">
+      <div class="ft-top">
+        <div class="ft-brand">
+          <div class="ft-logo-row">
+            <div class="ft-logo"><img src="logo.png" alt="Jubilee Health Insurance" loading="lazy" /></div>
+            <div class="ft-divider"></div>
+            <a href="https://www.nxt.pe" target="_blank" rel="noopener" class="ft-nxtpe-wrap" title="Powered by NxtPe">
+              <img src="https://www.nxt.pe/assets/nxtpeLogo.png" alt="NxtPe" />
+            </a>
+          </div>
+          <p>Jubilee Insurance provides trusted insurance solutions across East Africa. Regulated by the Insurance Regulatory Authority of Uganda.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Health Insurance</h4>
+          <ul>
+            <li><a href="Jubilee-J-care.html">J-Care Health Insurance</a></li>
+            <li><a href="Jubilee-J-care-Junior.html">J-Junior Health Insurance</a></li>
+            <li><a href="#support">J-Senior Guidance</a></li>
+            <li><a href="#products">Compare Health Options</a></li>
+            <li><a href="#support">Chat Support</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Jubilee</h4>
+          <ul>
+            <li><a href="#top">Health Insurance Home</a></li>
+            <li><a href="#support">Contact Support</a></li>
+            <li><a href="https://wa.me/256772751825?text=Hello%20Jubilee%2C%20I%20need%20health%20insurance%20support" target="_blank" rel="noopener">WhatsApp Jubilee</a></li>
+            <li><a href="#products">Find Your Cover</a></li>
+            <li><a href="https://nxtpe.com" target="_blank" rel="noopener">Powered by NxtPe</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bot">
+        <span class="ft-copy">&copy; 2026 Jubilee Insurance. All rights reserved.</span>
+        <span class="ft-reg">Regulated by IRA Uganda</span>
+      </div>
+    </div>
+  </footer>
+  <div class="wa-widget" id="waWidget" aria-label="WhatsApp chat widget">
+    <div class="wa-widget-head">
+      <div class="wa-widget-title">
+        <span aria-hidden="true">
+          <svg viewBox="0 0 90 90"><path d="M90 44a44 44 0 0 1-66 38L0 90l8-24A44 44 0 0 1 46 0c24 0 44 20 44 44zM46 7C25 7 9 24 9 44c0 8 2 15 7 21l-5 14 14-4a37 37 0 0 0 58-31C83 24 66 7 46 7zm22 47l-2-1-7-4-3 1-3 4h-3c-1 0-4-1-8-5-3-3-6-6-6-8v-2l2-2 1-1v-2l-4-8c0-2-1-2-2-2h-2l-3 1c-1 1-4 4-4 9s4 11 5 11c0 1 7 12 18 16 11 5 11 3 13 3s7-2 7-5l1-5z"/></svg>
+        </span>
+        Jubilee Health Support
+      </div>
+      <button class="wa-close" type="button" id="waClose" aria-label="Close WhatsApp chat">
+        <svg viewBox="0 0 48 48"><path d="M38 12.83 35.17 10 24 21.17 12.83 10 10 12.83 21.17 24 10 35.17 12.83 38 24 26.83 35.17 38 38 35.17 26.83 24z"/></svg>
+      </button>
+    </div>
+    <div class="wa-widget-body">
+      <div class="wa-message">Hi. Need help choosing J-Care, J-Junior, or senior health cover? Send us a message and a Jubilee agent will guide you.</div>
+      <div class="wa-quick-replies" aria-label="Quick WhatsApp replies">
+        <button class="wa-quick-reply" type="button" data-wa-text="Hello Jubilee, please help me choose the right health insurance option.">Help me choose</button>
+        <button class="wa-quick-reply" type="button" data-wa-text="Hello Jubilee, I would like to get a health insurance quote.">Get a quote</button>
+        <button class="wa-quick-reply" type="button" data-wa-text="Hello Jubilee, I want to know more about J-Junior health insurance.">J-Junior</button>
+        <button class="wa-quick-reply" type="button" data-wa-text="Hello Jubilee, I want guidance on senior health insurance / J-Senior options.">J-Senior</button>
+      </div>
+      <div class="wa-widget-form">
+        <textarea id="waInput" rows="1" placeholder="Type your message..." aria-label="WhatsApp message"></textarea>
+        <button class="wa-send" type="button" id="waSend" aria-label="Send message on WhatsApp">
+          <svg viewBox="0 0 48 48"><path d="M4.02 42 46 24 4.02 6 4 20l30 4-30 4z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <button class="wa-launcher" type="button" id="waLauncher" aria-label="Open WhatsApp chat">
+    <svg viewBox="0 0 90 90"><path d="M90 44a44 44 0 0 1-66 38L0 90l8-24A44 44 0 0 1 46 0c24 0 44 20 44 44zM46 7C25 7 9 24 9 44c0 8 2 15 7 21l-5 14 14-4a37 37 0 0 0 58-31C83 24 66 7 46 7zm22 47l-2-1-7-4-3 1-3 4h-3c-1 0-4-1-8-5-3-3-6-6-6-8v-2l2-2 1-1v-2l-4-8c0-2-1-2-2-2h-2l-3 1c-1 1-4 4-4 9s4 11 5 11c0 1 7 12 18 16 11 5 11 3 13 3s7-2 7-5l1-5z"/></svg>
+  </button>
+  <script>
+    (function(){
+      var phone = '256772751825';
+      var widget = document.getElementById('waWidget');
+      var launcher = document.getElementById('waLauncher');
+      var close = document.getElementById('waClose');
+      var send = document.getElementById('waSend');
+      var input = document.getElementById('waInput');
+      var quickReplies = Array.prototype.slice.call(document.querySelectorAll('.wa-quick-reply'));
+
+      function openWidget(){
+        widget.classList.add('open');
+        launcher.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeWidget(){
+        widget.classList.remove('open');
+        launcher.setAttribute('aria-expanded', 'false');
+      }
+
+      function openWhatsapp(){
+        var fallback = 'Hello Jubilee, I need help choosing health insurance.';
+        var message = (input.value || fallback).trim();
+        window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(message), '_blank', 'noopener');
+      }
+
+      function resizeComposer(){
+        input.style.height = 'auto';
+        input.style.height = Math.min(input.scrollHeight, 88) + 'px';
+      }
+
+      function openWidgetOnLoad(){
+        window.setTimeout(openWidget, 650);
+      }
+
+      launcher.setAttribute('aria-expanded', 'false');
+      launcher.addEventListener('click', function(){
+        if(widget.classList.contains('open')){ closeWidget(); } else { openWidget(); input.focus(); }
+      });
+      launcher.addEventListener('mouseenter', openWidget);
+      close.addEventListener('click', closeWidget);
+      document.addEventListener('pointerdown', function(event){
+        if(!widget.classList.contains('open')){ return; }
+        if(widget.contains(event.target) || launcher.contains(event.target)){ return; }
+        closeWidget();
+      });
+      send.addEventListener('click', openWhatsapp);
+      quickReplies.forEach(function(reply){
+        reply.addEventListener('click', function(){
+          input.value = reply.getAttribute('data-wa-text') || reply.textContent.trim();
+          resizeComposer();
+          input.focus();
+        });
+      });
+      input.addEventListener('keydown', function(event){
+        if(event.key === 'Enter' && !event.shiftKey){ event.preventDefault(); openWhatsapp(); }
+      });
+      input.addEventListener('input', resizeComposer);
+      if(document.readyState === 'complete'){
+        openWidgetOnLoad();
+      } else {
+        window.addEventListener('load', openWidgetOnLoad, { once: true });
+      }
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
